@@ -1,4 +1,3 @@
-import './App.css';
 import { useState } from "react";
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
           <button onClick={() => setCounter((counter) => counter - 1)} data-testid="minus-button">-</button>
           <button onClick={() => setCounter((counter) => counter + 1)} data-testid="plus-button">+</button>
         </div>
+        <button className="foo" style={{ background: "blue"}} data-testid="on/off-button">on/off</button>
       </header>
     </div>
   );
