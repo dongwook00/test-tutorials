@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-export const handler = [
+export const handlers = [
   rest.get("http://localhost:5000/products", (req, res, ctx) => {
     return res(
       ctx.json([
