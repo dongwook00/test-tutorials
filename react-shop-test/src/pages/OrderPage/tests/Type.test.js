@@ -27,3 +27,9 @@ test("An error occurs when fetching product data", async () => {
   const errorBanner = await screen.findByTestId("error-banner");
   expect(errorBanner).toHaveTextContent("에러가 발생했습니다");
 });
+
+test("fetch options from server", async () => {
+  render(<Type orderType="options" />);
+  const options = await screen.findAllByRole("checkbox", {});
+  expect(options).toHaveLength(2);
+});
