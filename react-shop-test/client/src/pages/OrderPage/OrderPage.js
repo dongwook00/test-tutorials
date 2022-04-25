@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import Type from "./Type";
+import { OrderContext } from "../../contexts/OrderContext";
 
 const OrderPage = () => {
+  const [order] = useContext(OrderContext);
+
   return (
     <div>
       <h1>Travel Products</h1>
@@ -12,7 +16,7 @@ const OrderPage = () => {
           <Type orderType="options" />
         </div>
         <div style={{ width: "50%" }}>
-          <h2>Total Price: </h2>
+          <h2>Total Price: {order.totals.total} </h2>
           <br />
           <button>주문</button>
         </div>
