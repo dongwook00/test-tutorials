@@ -12,7 +12,7 @@ const Products = ({ name, imagePath, updateItemCount }) => {
         src={`http://localhost:4000/${imagePath}`}
         alt={`${name} product`}
       />
-      <form stype={{ marginTop: "10px" }}>
+      <form style={{ marginTop: "10px" }}>
         <label htmlFor={name} style={{ textAlign: "right" }}>
           {name}
         </label>
@@ -20,7 +20,7 @@ const Products = ({ name, imagePath, updateItemCount }) => {
           id={name}
           style={{ marginLeft: 7 }}
           type="number"
-          name="quantity"
+          name={`quality${name}`}
           min="0"
           defaultValue={0}
           onChange={handleChange}

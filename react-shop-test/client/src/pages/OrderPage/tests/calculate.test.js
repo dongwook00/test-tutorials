@@ -1,6 +1,5 @@
 import { render, screen } from "../../../test-utils";
 import userEvent from "@testing-library/user-event";
-import { OrderContextProvider } from "../../../contexts/OrderContext";
 import Type from "../Type";
 import OrderPage from "../OrderPage";
 
