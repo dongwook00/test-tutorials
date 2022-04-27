@@ -11,7 +11,7 @@ function App() {
     <div>
       <OrderContextProvider>
         {step === 0 && <OrderPage setStep={setStep} />}
-        {step === 1 && <SummaryPage />}
+        {step === 1 && <SummaryPage setStep={setStep} />}
         {step === 2 && <CompletePage />}
       </OrderContextProvider>
     </div>
