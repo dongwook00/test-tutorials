@@ -58,4 +58,21 @@ test("From order to order completion", async () => {
   // 6. 주문확인 클릭
   const confirmButton = screen.getByRole("button", { name: "주문 확인" });
   userEvent.click(confirmButton);
+
+  // 확인 페이지
+  // 1. 로딩이 되는지 확인한다
+  const loading = screen.getByText(/loading/i);
+  expect(loading).toBeInTheDocument();
+  // 2. 로딩이 끝나면 성공했는지 확인한다 (주문이 성공했습니다)
+  const completeHeader = await screen.findByRole("heading", {
+    name: "주문이 성공했습니다.",
+  });
+  expect(completeHeader).toBeInTheDocument();
+  // 3. 로딩문구가 사라졌는지 확인한다
+  const loadingDisappered = screen.queryByText("loading");
+  expect(loadingDisappered).not.toBeInTheDocument();
+
+  // 4. 첫페이지로 버튼을 클릭한다
+  const firstPageButton = screen.getByRole("button", { name: "첫페이지로" });
+  userEvent.click(firstPageButton);
 });
