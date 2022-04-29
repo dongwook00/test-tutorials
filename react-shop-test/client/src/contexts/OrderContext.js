@@ -17,7 +17,7 @@ function calculateSubtotal(orderType, orderCounts) {
 }
 
 export function OrderContextProvider(props) {
-  const [orderCounts, setOrderCountrs] = useState({
+  const [orderCounts, setOrderCounts] = useState({
     products: new Map(),
     options: new Map(),
   });
@@ -46,10 +46,17 @@ export function OrderContextProvider(props) {
       const orderCountsMap = orderCounts[orderType];
       orderCountsMap.set(itemName, parseInt(newItemCount));
 
-      setOrderCountrs(newOrderCounts);
+      setOrderCounts(newOrderCounts);
     }
 
-    return [{ ...orderCounts, totals }, updateItemCount];
+    function resetOrders() {
+      setOrderCounts({
+        products: new Map(),
+        options: new Map(),
+      });
+    }
+
+    return [{ ...orderCounts, totals }, updateItemCount, resetOrders];
   }, [orderCounts, totals]);
 
   return <OrderContext.Provider value={value} {...props} />;

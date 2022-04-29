@@ -75,4 +75,10 @@ test("From order to order completion", async () => {
   // 4. 첫페이지로 버튼을 클릭한다
   const firstPageButton = screen.getByRole("button", { name: "첫페이지로" });
   userEvent.click(firstPageButton);
+
+  const productPrice = screen.getByText("상품 총 가격: 0");
+  expect(productPrice).toBeInTheDocument();
+
+  const optionPrice = screen.getByText("옵션 총 가격: 0");
+  expect(optionPrice).toBeInTheDocument();
 });

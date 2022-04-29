@@ -27,4 +27,7 @@ export const handlers = [
       ])
     );
   }),
+  rest.post("http://localhost:4000/complete", (req, res, ctx) => {
+    return res(ctx.json([{ orderNumber: 123123123, orderPrice: 3000 }]));
+  }),
 ];

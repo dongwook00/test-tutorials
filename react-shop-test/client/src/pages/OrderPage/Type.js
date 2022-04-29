@@ -38,11 +38,15 @@ const Type = ({ orderType }) => {
       }
     />
   ));
+  const orderTypeKorean = orderType === "products" ? "상품" : "옵션";
+
   return (
     <>
       <h2>주문 종류</h2>
       <p>상품 하나의 가격</p>
-      <p>총 가격: {orderData.totals[orderType]}</p>
+      <p>
+        {orderTypeKorean} 총 가격: {orderData.totals[orderType]}
+      </p>
       <div
         style={{
           display: "flex",
