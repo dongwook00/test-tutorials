@@ -58,4 +58,20 @@ describe("testing setupNewUser", function () {
     save.restore();
     sinon.assert.calledWith(callback, null, expectedResult);
   });
+
+  it("should pass object with correct values to save only once", function () {
+    var info = { name: "test" };
+    var expectedUser = {
+      name: info.name,
+      nameLowerCase: info.name.toLowerCase(),
+    };
+
+    var database = sinon.mock(Database);
+    database.expects("save").once().withArgs(expectedUser);
+
+    setupNewUser(info, function () {});
+
+    database.verify();
+    database.restore();
+  });
 });
