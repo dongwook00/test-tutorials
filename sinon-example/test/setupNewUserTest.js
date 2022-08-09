@@ -1,5 +1,5 @@
-const setupNewUser = require("../setupNewUser");
-const Database = require("../Database");
+const setupNewUser = require("../src/setupNewUser");
+const Database = require("../src/Database");
 const sinon = require("sinon");
 
 describe("testing setupNewUser", function () {

@@ -1,5 +1,5 @@
 const assert = require("assert");
-const greeter = require("../greeter.js");
+const greeter = require("../src/greeter.js");
 const sinon = require("sinon");
 
 describe("testing the greeter", function () {
