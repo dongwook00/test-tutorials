@@ -1,6 +1,6 @@
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM("");
-const jQuery = require("jquery")(window);
+const $ = require("jquery")(window);
 
 module.exports = {
   name: "",
@@ -8,16 +8,10 @@ module.exports = {
     callback();
   },
   setUsername: function (name) {
+    console.log("setusername", name);
     this.name = name;
   },
   saveUser: function (user, callback) {
-    jQuery.post(
-      "/users",
-      {
-        first: user.firstname,
-        last: user.lastname,
-      },
-      callback
-    );
+    $.post("https://reqres.in/api/users", user, callback);
   },
 };

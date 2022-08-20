@@ -1,9 +1,8 @@
 const example = require("../src/example");
 const sinon = require("sinon");
-const { saveUser } = require("../src/example");
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM("");
-const jQuery = require("jquery")(window);
+const $ = require("jquery")(window);
 
 describe("testMe function", function () {
   it("should call the callback", function () {
@@ -14,29 +13,36 @@ describe("testMe function", function () {
 });
 
 describe("setName function", function () {
-  it("should be called with name", function () {
+  it("should be called with name (spy)", function () {
     let setUsernameSpy = sinon.spy(example, "setUsername");
     example.setUsername("Harry Potter");
     sinon.assert.calledOnce(setUsernameSpy);
     sinon.assert.calledWith(setUsernameSpy, "Harry Potter");
     setUsernameSpy.restore();
   });
-});
 
-describe("saveUser", function () {
-  it("should call callback after saving", function () {
-    let post = sinon.stub(jQuery, "post");
-    post.yields();
-    let callbackSpy = sinon.spy();
-    let testUser = { firstname: "Severus", lastname: "Snape" };
-
-    example.saveUser(testUser, callbackSpy);
-    sinon.assert.calledOnce(callbackSpy);
-    post.restore();
+  it("should be called with name (stub)", function () {
+    let setUsernameStub = sinon.stub(example, "setUsername");
+    example.setUsername("Harry Potter");
+    sinon.assert.calledOnce(setUsernameStub);
+    sinon.assert.calledWith(setUsernameStub, "Harry Potter");
+    setUsernameStub.restore();
   });
 });
 
 describe("saveUser", function () {
+  it("should call callback after saving", function () {
+    var post = sinon.stub($, "post");
+    post.yields();
+    var callback = sinon.spy();
+
+    example.saveUser({ name: "morpheus", job: "leader" }, callback);
+    post.restore();
+    sinon.assert.calledOnce(callback);
+  });
+});
+
+xdescribe("saveUser", function () {
   it("should send correct parameters to the expected URL", function () {
     let post = sinon.stub(jQuery, "post");
 
